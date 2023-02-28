@@ -6,7 +6,6 @@ export const HomeContainer = styled.div`
 `;
 
 export const CoffeeListContainer = styled.main`
-    border: 1px solid red;
     padding: 3.2rem 16rem 16rem 16rem;
     flex-direction: column;
     display: flex;
@@ -19,7 +18,6 @@ export const CoffeeListContainer = styled.main`
         font-size: 32px;
         line-height: 130%;
         color: ${(props) => props.theme.colors["base-subtitle"]};
-        border: 1px solid red;
      }
 
     }

@@ -1,8 +1,11 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react"
-import { CheckoutContainer,FormContainer,InputCustomized, ButtonPayPreference, PayFormContainer,AddressFormContainer,HeaderCardAdress, HeaderCardPay, AddressForm, PayForm, ConfirmForm} from "./styles"
+import { CheckoutContainer,FormContainer,InputCustomized, ButtonPayPreference, PayFormContainer,AddressFormContainer,HeaderCardAdress, HeaderCardPay, AddressForm,InforOrder, PayForm, ConfirmForm, ButtonConfirm} from "./styles"
 import { useState } from "react"
+import { CardSelected } from "./components/CardSelected"
+import { useTheme } from "styled-components"
 
 export const Checkout = () => {
+    const theme = useTheme()
 
     const [methodPay, setMethodPay] = useState("")
 
@@ -48,11 +51,11 @@ export const Checkout = () => {
                     </span>
                 </HeaderCardPay>
                 <PayForm>
-                    <ButtonPayPreference onClick={() => setMethodPay("credit-card")} selected={methodPay === "credit-card"}>
+                    <ButtonPayPreference onClick={() => setMethodPay("credit-card")} selected={methodPay === "credit-card"} theme={theme}>
                         <CreditCard size={16} />
                         cartão de credito
                     </ButtonPayPreference>
-                    <ButtonPayPreference onClick={() => setMethodPay("debit-card")} selected={methodPay === "debit-card"}>
+                    <ButtonPayPreference onClick={() => setMethodPay("debit-card")} selected={methodPay === "debit-card"} theme={theme}>
                         <Bank size={16} />
                         cartão de débito
                     </ButtonPayPreference>
@@ -62,7 +65,26 @@ export const Checkout = () => {
                     </ButtonPayPreference>
                 </PayForm>
             </PayFormContainer>
-            <ConfirmForm></ConfirmForm>
+            <ConfirmForm>
+                <CardSelected />
+                <CardSelected />
+                <InforOrder>
+                    <div>
+                        <span>Total de itens</span>
+                        <span>R$ 29,70</span>
+                    </div>
+                    <div>
+                        <span>Entrega</span>
+                        <span>R$ 3,50</span>
+                    </div>
+                    <div>
+                        <span>Total</span>
+                        <span>R$ 33,20</span>
+                    </div>
+                </InforOrder>
+
+                <ButtonConfirm type="submit">confirmar pedido</ButtonConfirm>
+            </ConfirmForm>
         </FormContainer>
         </CheckoutContainer>
     )
