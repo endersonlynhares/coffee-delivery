@@ -13,15 +13,18 @@ interface Coffee {
 
 interface Order{
   id: Date | null,
-  coffee: Coffee[]
+  coffee: Coffee[] 
 }
 
 interface OrderContextType {
   order: Order | null,
-  coffee: Coffee[] | null
+  coffee: Coffee[] 
   getTotalAmountOrder: () => number,
-  getTotalAmountPrice: () => number
-  addCoffee: (coffeeProps: Coffee, amount: number) => void
+  getTotalAmountPrice: () => number 
+  addCoffee: (coffeeProps: Coffee, amount: number) => void 
+  changeAmountCoffeeSelected: (coffeeProps: Coffee, amount: number) => void
+  onRemoveCoffeeSelected: (coffeeProps: Coffee) => void
+
 }
 
 interface OrderContextProviderProps {
@@ -56,6 +59,17 @@ export const OrderContextProvider = ({ children }: OrderContextProviderProps) =>
     }
       
   }
+
+  function changeAmountCoffeeSelected(coffeeSelected:Coffee, newAmount: number){
+    const coffeeIndex = coffee.findIndex((coffee) => {
+      return coffee.id == coffeeSelected.id;
+    });
+
+    const tempCoffee = [...coffee]
+    tempCoffee[coffeeIndex].amount = newAmount
+
+    setCoffee(tempCoffee)
+  }
  
   function getTotalAmountOrder(){
     const getTotal = (total: number, item: Coffee) =>{
@@ -74,21 +88,17 @@ export const OrderContextProvider = ({ children }: OrderContextProviderProps) =>
 
     return totalPrice
   }
+
+  function onRemoveCoffeeSelected(coffeeSelected: Coffee){
+    const newCoffee = coffee.filter(coffee => coffee.id != coffeeSelected.id)
+    setCoffee(newCoffee)
+  }
   
-  // function addNewCoffeeInOrder(){
-  //   setOrder(state => {
-  //     return(
-  //       {
-  //         id: state.id,
-  //         coffee: [...coffee]
-  //       }
-  //     )
-  //   })
-  // }
+ 
 
   console.log(coffee)
   return (
-    <OrderContext.Provider value={{order, getTotalAmountOrder, addCoffee, coffee, getTotalAmountPrice}}>
+    <OrderContext.Provider value={{order, getTotalAmountOrder, addCoffee, coffee, getTotalAmountPrice, changeAmountCoffeeSelected, onRemoveCoffeeSelected}}>
       {children}
     </OrderContext.Provider>
   )

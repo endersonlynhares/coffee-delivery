@@ -216,3 +216,12 @@ export const ButtonConfirm = styled.button`
   }
 
 `;
+
+export const CoffeeList = styled.div`
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  max-height: 300px;
+
+  overflow: auto;
+`;

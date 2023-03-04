@@ -1,5 +1,5 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react"
-import { CheckoutContainer,FormContainer,InputCustomized, ButtonPayPreference, PayFormContainer,AddressFormContainer,HeaderCardAdress, HeaderCardPay, AddressForm,InforOrder, PayForm, ConfirmForm, ButtonConfirm} from "./styles"
+import { CheckoutContainer,FormContainer,InputCustomized, ButtonPayPreference, PayFormContainer,AddressFormContainer,HeaderCardAdress, HeaderCardPay, AddressForm,InforOrder, PayForm, ConfirmForm, ButtonConfirm, CoffeeList} from "./styles"
 import { useContext, useState } from "react"
 import { CardSelected } from "./components/CardSelected"
 import { useTheme } from "styled-components"
@@ -68,9 +68,15 @@ export const Checkout = () => {
                 </PayForm>
             </PayFormContainer>
             <ConfirmForm>
-                {coffee && coffee.map(coffee => {
-                    return(<CardSelected key={coffee.id} coffeeSelected={coffee} />)
-                })}
+                {coffee.length <= 0 ? "Adicione um café para concluir o pedido." : (
+                    <CoffeeList>
+                
+                    {coffee && coffee.map(coffee => {
+                            return(<CardSelected key={coffee.id} coffeeSelected={coffee} />)
+                    })}
+                   </CoffeeList>
+                )}
+               
                
                 <InforOrder>
                     <div>

@@ -11,6 +11,10 @@ export const CoffeeListContainer = styled.main`
     display: flex;
     justify-content: center;
     
+    @media(max-width: 800px){
+      padding: 8rem;
+    }
+
     h2{
         font-family: 'Baloo 2';
         font-style: normal;
