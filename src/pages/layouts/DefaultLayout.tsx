@@ -5,7 +5,7 @@ import {LayoutContainer} from "./styles"
 export const DefaultLayout = () =>{
     return(
         <LayoutContainer>
-            <Header totalAmount={18} />
+            <Header />
             <Outlet />
         </LayoutContainer>
     )

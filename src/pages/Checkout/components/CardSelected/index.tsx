@@ -1,19 +1,31 @@
-import { useState } from "react"
 import { CardContainer, InfoCard, DetailsCard, CountButton, ButtonDelete, CountButtonContainer} from "./styles"
 import { Minus, Plus, Trash } from "phosphor-react"
-import Coffee from "../../../../assets/coffee-images/arabe.png"
 
-export const CardSelected = () => {
+interface Coffee{
+    id: string,
+    title: string,
+    tags: string[],
+    description: string,
+    srcImg: string,
+    price: string,
+    amount: number
+}
+
+interface CardProps{
+    coffeeSelected: Coffee,
+}
+
+export const CardSelected = ({coffeeSelected}:CardProps) => {
     return(
         <CardContainer>
             <InfoCard>
-                <img src={Coffee} alt="" />
+                <img src={coffeeSelected.srcImg} alt="" />
                 <DetailsCard>
-                    <p>Expresso Tradicional</p>
+                    <p>{coffeeSelected.title}</p>
                     <div>
                         <CountButtonContainer>
                             <CountButton><Plus size={14} weight="bold" /></CountButton>
-                            <span>0</span>
+                            <span>{coffeeSelected.amount}</span>
                             <CountButton><Minus size={14} weight="bold" /></CountButton>
                         </CountButtonContainer>
                         <ButtonDelete>
@@ -22,7 +34,7 @@ export const CardSelected = () => {
                         </ButtonDelete>
                     </div>
                 </DetailsCard>
-                <span>R$ 9,00</span>
+                <span>R$ {coffeeSelected.price}</span>
             </InfoCard>   
         </CardContainer>
     )

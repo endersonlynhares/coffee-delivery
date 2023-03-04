@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { CardContainer, BuyCoffee, Tag, Tags, ButtonCart, Counter } from "./styles"
-import { MapPin, Minus, Plus, ShoppingCart } from "phosphor-react"
+import { Minus, Plus, ShoppingCart } from "phosphor-react"
+import {OrderContext} from "../../../../contexts/OrderContext"
 
 interface Coffee{
     id: string,
@@ -13,27 +14,33 @@ interface Coffee{
 }
 
 interface CardProps{
-    coffee: Coffee,
-    // order: Coffee[] | [],
-    // setOrder: any
+    coffeeProps: Coffee,
 }
 
-export const Card = ({coffee}:CardProps) => {
-
+export const Card = ({coffeeProps}:CardProps) => {
+    const { addCoffee } = useContext(OrderContext)
     const [amount, setAmount] = useState(0)
 
-    // const addToCart = () =>{
-    //     setOrder([...order, {...coffee, amount: amount}])
-    //     setAmount(0)
-    // }
+    const addToCart = () =>{
+        if(amount !== 0){
+            addCoffee(coffeeProps, amount)
+            setAmount(0) 
+        }else{
+            alert('Informe um valor')
+        }
+    }
+
+    if(amount < 0){
+        setAmount(0)
+    }
 
     return (
         <CardContainer>
-            <img src={coffee.srcImg} alt="" />
+            <img src={coffeeProps.srcImg} alt="" />
 
             <Tags>
                 {
-                    coffee.tags.map(tag =>{
+                    coffeeProps.tags.map((tag: string) =>{
                         return(
                             <Tag key={tag}>{tag}</Tag>
                         )
@@ -41,13 +48,13 @@ export const Card = ({coffee}:CardProps) => {
                 }
             </Tags>
 
-            <h3>{coffee.title}</h3>
-            <p>{coffee.description}</p>
+            <h3>{coffeeProps.title}</h3>
+            <p>{coffeeProps.description}</p>
 
             <BuyCoffee>
 
                 <span>
-                    R$ <span>{coffee.price}</span>
+                    R$ <span>{coffeeProps.price}</span>
                 </span>
 
                 <Counter>
@@ -60,7 +67,7 @@ export const Card = ({coffee}:CardProps) => {
                     </button>
                 </Counter>
 
-                <ButtonCart>
+                <ButtonCart onClick={() => addToCart()}>
                     <ShoppingCart size={19} weight="fill" />
                 </ButtonCart>
 

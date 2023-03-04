@@ -7,7 +7,13 @@ interface HeaderProps{
     totalAmount: number
 }
 
-export const Header = ({totalAmount}:HeaderProps) =>{
+import { useContext } from "react"
+import { OrderContext } from "../../contexts/OrderContext"
+
+export const Header = () =>{
+
+    const {getTotalAmountOrder} = useContext(OrderContext)
+    
    return(
     <HeaderContainer>
         <header>
@@ -22,7 +28,7 @@ export const Header = ({totalAmount}:HeaderProps) =>{
                 <ButtonCart> 
                     <Link to="/checkout">
                         <ShoppingCart size={22} weight="fill" />
-                        <span>{totalAmount}</span>
+                        <span>{getTotalAmountOrder()}</span>
                     </Link>
                 </ButtonCart>
             </div>

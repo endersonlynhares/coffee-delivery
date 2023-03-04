@@ -1,13 +1,15 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react"
 import { CheckoutContainer,FormContainer,InputCustomized, ButtonPayPreference, PayFormContainer,AddressFormContainer,HeaderCardAdress, HeaderCardPay, AddressForm,InforOrder, PayForm, ConfirmForm, ButtonConfirm} from "./styles"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { CardSelected } from "./components/CardSelected"
 import { useTheme } from "styled-components"
+import { OrderContext } from "../../contexts/OrderContext"
 
 export const Checkout = () => {
     const theme = useTheme()
 
     const [methodPay, setMethodPay] = useState("")
+    const { coffee, getTotalAmountPrice } = useContext(OrderContext)
 
     return (
         <CheckoutContainer>
@@ -66,12 +68,14 @@ export const Checkout = () => {
                 </PayForm>
             </PayFormContainer>
             <ConfirmForm>
-                <CardSelected />
-                <CardSelected />
+                {coffee && coffee.map(coffee => {
+                    return(<CardSelected key={coffee.id} coffeeSelected={coffee} />)
+                })}
+               
                 <InforOrder>
                     <div>
                         <span>Total de itens</span>
-                        <span>R$ 29,70</span>
+                        <span>R$ {String(getTotalAmountPrice().toFixed(2)).replace(".", ",")}</span>
                     </div>
                     <div>
                         <span>Entrega</span>
@@ -79,7 +83,7 @@ export const Checkout = () => {
                     </div>
                     <div>
                         <span>Total</span>
-                        <span>R$ 33,20</span>
+                        <span>R$ {String((getTotalAmountPrice()+3.50).toFixed(2)).replace(".",",")}</span>
                     </div>
                 </InforOrder>
 

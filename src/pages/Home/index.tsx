@@ -2,6 +2,8 @@ import { Card } from "./components/Card"
 import { Hero } from "./components/Hero"
 import { HomeContainer, CoffeeListContainer, CoffeeList, Tag } from "./styles"
 import coffees from "../../coffees"
+import { useContext } from "react"
+import { OrderContext } from "../../contexts/OrderContext"
 // import { useState } from "react"
 
 interface Coffee {
@@ -15,11 +17,7 @@ interface Coffee {
 }
 
 export const Home = () => {
-    // const getTotal = (total: number, item: Coffee) =>{
-    //     return total + item.amount
-    // }
-    // const [order, setOrder] = useState([])
-    // const totalAmount = order.reduce(getTotal, 0)
+
 
     return (
         <HomeContainer>
@@ -28,7 +26,7 @@ export const Home = () => {
                 <h2>Nossos cafés</h2>
                 <CoffeeList>
                     {
-                        coffees.map(coffee => <Card coffee={coffee} key={coffee.id} />)
+                        coffees.map(coffee => <Card coffeeProps={coffee} key={coffee.id} />)
                     }
                 </CoffeeList>
             </CoffeeListContainer>
