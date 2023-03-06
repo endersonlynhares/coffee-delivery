@@ -9,7 +9,7 @@ export const CheckoutContainer = styled.main`
   }
 `;
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
   margin: 0 auto;
   max-width: 1200px;
   display: grid;
