@@ -4,6 +4,22 @@ import { CurrencyDollar, MapPin, Timer } from "phosphor-react"
 import { useContext } from "react"
 import { OrderContext } from "../../contexts/OrderContext"
 
+interface payFormType{
+    "credit-card": any,
+    "debit-card": any,
+    "cash": any
+}
+
+const PAY_FORM: payFormType = {
+    "credit-card": "Cartão de Crédito",
+    "debit-card": "Cartão de Débito",
+    "cash": "Dinheiro"
+} 
+
+
+
+
+
 export const Success = () => {
 
     const { order } = useContext(OrderContext)
@@ -22,7 +38,7 @@ export const Success = () => {
                                 <MapPin size={36} weight="bold" />
                                 <div>
                                     Entrega em <strong>Rua {order.address && order.address.rua}, { order.address && order.address.numero}</strong><br />
-                                    {order.address && order.address.cidade} - Fortaleza, CE
+                                    {order.address && order.address.bairro} - {order.address?.cidade}, {order.address?.uf}
                                 </div>
                             </ItemSuccess>
                             <ItemSuccess typeColor="timer">
@@ -31,7 +47,7 @@ export const Success = () => {
                             </ItemSuccess>
                             <ItemSuccess typeColor="payform">
                                 <CurrencyDollar size={36} weight="bold" />
-                                <div>Pagamento na entrega<br /><strong>{order.payForm}</strong></div>
+                                <div>Pagamento na entrega<br /><strong>{PAY_FORM[order.payForm as keyof typeof PAY_FORM]}</strong></div>
                             </ItemSuccess>
                         </CardSuccess>
                     )

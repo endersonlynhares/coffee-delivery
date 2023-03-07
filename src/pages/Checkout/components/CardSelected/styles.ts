@@ -60,7 +60,7 @@ export const DetailsCard = styled.div`
   }
 `;
 
-const BaseButton = styled.button`
+const BaseButton = styled.div`
   padding: 8px;
   text-align: center;
   display: flex;

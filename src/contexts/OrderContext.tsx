@@ -1,4 +1,5 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 interface Coffee {
@@ -49,10 +50,12 @@ export const OrderContext = createContext({} as OrderContextType)
 
 
 export const OrderContextProvider = ({ children }: OrderContextProviderProps) => {
+  const navigate = useNavigate()
   const [coffee, setCoffee] = useState<Coffee[]>([])
+  const [order, setOrder] = useState<Order>(getInitialState)
 
   function getInitialState() {
-    const storageStateAsJSON = localStorage.getItem('@ignite-timer:cycles-state-1.0.0')
+    const storageStateAsJSON = localStorage.getItem('@coffee-delivery-1.0')
     if (storageStateAsJSON) {
       return JSON.parse(storageStateAsJSON)
     } else {
@@ -64,8 +67,6 @@ export const OrderContextProvider = ({ children }: OrderContextProviderProps) =>
       }
     }
   }
-
-  const [order, setOrder] = useState<Order>(getInitialState)
 
   function addCoffee(coffeeSelected: Coffee, newAmount: number) {
     if (coffee.find(coffee => coffee.id == coffeeSelected.id)) {
@@ -119,17 +120,33 @@ export const OrderContextProvider = ({ children }: OrderContextProviderProps) =>
   }
 
   function finishOrder(data: Address, methodPay: string) {
-    setOrder({
-      id: new Date(),
-      coffee: coffee,
-      address: data,
-      payForm: methodPay,
-      finishedOrder: true
-    })
-
-    const stateJSON = JSON.stringify(order)
-    localStorage.setItem('@ignite-timer:cycles-state-1.0.0', stateJSON)
+    if (coffee.length > 0) {
+      setOrder({
+        id: new Date(),
+        coffee: coffee,
+        address: data,
+        payForm: methodPay,
+        finishedOrder: true
+      })
+      navigate('/success')
+      setCoffee([])
+    } else {
+      alert('Adicione algum café')
+    }
   }
+
+  useEffect(() =>{
+    localStorage.setItem('@coffee-delivery-1.0', JSON.stringify(order))
+  }, [order])
+
+
+  // localStorage.setItem('@coffee-delivery-1.0', JSON.stringify({
+  //   id: new Date(),
+  //   coffee: coffee,
+  //   address: data,
+  //   payForm: methodPay,
+  //   finishedOrder: true
+  // }))
 
   // function addNewCoffeeInOrder(){
   //   setOrder(state => {
@@ -141,8 +158,6 @@ export const OrderContextProvider = ({ children }: OrderContextProviderProps) =>
   //     )
   //   })
   // }
-
-  console.log(coffee)
   return (
     <OrderContext.Provider value={{ order, getTotalAmountOrder, addCoffee, coffee, getTotalAmountPrice, changeAmountCoffeeSelected, onRemoveCoffeeSelected, finishOrder }}>
       {children}

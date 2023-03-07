@@ -112,7 +112,7 @@ const ButtonSelected = (selected: boolean, theme: ThemeType) => css`
   background-color: ${selected && theme.colors["secondary-100"]} ;
 `;
 
-export const ButtonPayPreference = styled.button`
+export const ButtonPayPreference = styled.div`
   cursor: pointer;
   width: 100%;
   background-color: ${(props) => props.theme.colors["base-button"]};

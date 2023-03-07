@@ -49,7 +49,7 @@ export const CardSelected = ({ coffeeSelected }: CardProps) => {
                                 onClick={() => setAmount((state: number) => state - 1)}
                             ><Minus size={14} weight="bold" /></CountButton>
                         </CountButtonContainer>
-                        <ButtonDelete onClick={() => handleRemoveCoffeeSelected()}>
+                        <ButtonDelete onClick={handleRemoveCoffeeSelected}>
                             <Trash size={16} />
                             Remover
                         </ButtonDelete>
