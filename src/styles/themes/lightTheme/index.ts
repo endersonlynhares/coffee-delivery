@@ -7,6 +7,8 @@ export const light = {
         "secondary-900": "#4B2995",
         "secondary-500": "#8047F8",
         "secondary-100": "#EBE5F9",
+        "icon": "#FFFFFF",
+        "base-text-input": "#272221",
 
         'base-title': '#272221',
         'base-subtitle': '#403937',
@@ -16,6 +18,7 @@ export const light = {
         'base-button': '#E6E5E5',
         'base-input': '#EDEDED',
         'base-card': '#F3F2F2',
+        "base-title-pay": "#403937",
         
         'background': '#FAFAFA',
         'white': '#FFFF',

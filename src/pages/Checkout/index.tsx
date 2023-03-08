@@ -108,7 +108,7 @@ export const Checkout = () => {
                     </PayForm>
                 </PayFormContainer>
                 <ConfirmForm>
-                    {coffee.length <= 0 ? "Adicione um café para concluir o pedido." : (
+                    {coffee.length <= 0 ? <span>Adicione um café para concluir o pedido.</span> : (
                         <CoffeeList>
 
                             {coffee && coffee.map(coffee => {

@@ -10,6 +10,8 @@ export const HeaderContainer = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center
+
+    
     }
 
     div{
@@ -17,6 +19,7 @@ export const HeaderContainer = styled.div`
         align-items: center;
         gap: 2rem;
     }
+
 `
 
 const BaseButton = styled.button`
@@ -45,7 +48,9 @@ export const ButtonLocation = styled(BaseButton)`
 
 export const ButtonCart = styled(BaseButton)`
     background: ${props => props.theme.colors["primary-100"]};
-    color: ${props => props.theme.colors['primary-900']};
+    a{
+        color: ${props => props.theme.colors['secondary-900']}
+    }
     position: relative;
     span{
         background: ${props => props.theme.colors["primary-900"]};
@@ -64,4 +69,25 @@ export const ButtonCart = styled(BaseButton)`
         font-size: 1.2rem;
     }
 
+
 `
+export const SwitchContainer = styled.span`
+  position: fixed;
+  bottom: 60px;
+  right: 50px;
+
+  @media (max-width: 800px) {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  div{
+    div{
+        div{   
+        display: flex;
+        justify-content: center;
+        color: white;
+    }
+    }
+  }
+`;

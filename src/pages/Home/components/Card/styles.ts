@@ -12,7 +12,7 @@ export const CardContainer = styled.div`
 
   background: ${(props) => props.theme.colors["base-card"]};
 
-  border-radius: 6px;
+  border-radius: 6px 36px;
   gap: 16px;
   padding: 2rem;
 
@@ -43,6 +43,7 @@ export const CardContainer = styled.div`
 export const Tags = styled.div`
   display: flex;
   justify-content: center;
+  gap:10px;
 `
 
 export const Tag = styled.div`
@@ -67,6 +68,7 @@ export const BuyCoffee = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  align-self: flex-end;
   margin-top: 2rem;
   /* margin-bottom: 2rem; */
   padding: 0px 10px;
@@ -98,8 +100,13 @@ export const Counter = styled.div`
   background: ${(props) => props.theme.colors["base-button"]};
   font-size: 1.6rem;
   color: ${props => props.theme.colors["base-title"]};
+  border-radius: 6px;
+  span{
+    color: ${({ theme }) => theme.colors["secondary-500"]};
 
+  }
   button {
+    
     color: ${(props) => props.theme.colors["secondary-500"]};
     display: flex;
     justify-content: center;
@@ -116,7 +123,7 @@ export const ButtonCart = styled.button`
     border-radius: 6px;
     padding: 5px;
     text-align: center;
-    color: ${props => props.theme.colors["base-card"]};
+    color: ${props => props.theme.colors.icon};
     background: ${props => props.theme.colors["secondary-900"]};
     cursor: pointer;
     transition: background 0.1s;

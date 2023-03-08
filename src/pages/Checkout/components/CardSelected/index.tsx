@@ -43,7 +43,9 @@ export const CardSelected = ({ coffeeSelected }: CardProps) => {
                         <CountButtonContainer>
                             <CountButton
                                 onClick={() => setAmount((state: number) => state + 1)}
-                            ><Plus size={14} weight="bold" /></CountButton>
+                            >
+                                <Plus size={14} weight="bold" />
+                            </CountButton>
                             <span>{amount}</span>
                             <CountButton
                                 onClick={() => setAmount((state: number) => state - 1)}

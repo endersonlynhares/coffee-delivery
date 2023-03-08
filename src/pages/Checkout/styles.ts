@@ -51,6 +51,7 @@ export const AddressForm = styled.div`
     }
 
     input {
+      color: ${props => props.theme.colors["base-text-input"]};
       @media (max-width: 820px) {
         width: 100% !important;
       }
@@ -110,16 +111,17 @@ const ButtonSelected = (selected: boolean, theme: ThemeType) => css`
   border: ${selected ? "1px solid" : "none"};
   border-color: ${selected && theme.colors["secondary-500"]};
   background-color: ${selected && theme.colors["secondary-100"]} ;
+  color: ${selected && theme.colors["base-title-pay"]}
 `;
 
 export const ButtonPayPreference = styled.div`
   cursor: pointer;
   width: 100%;
-  background-color: ${(props) => props.theme.colors["base-button"]};
+  background-color: ${(props) => props.theme.colors["base-input"]};
   text-transform: uppercase;
   font-size: 12px;
   line-height: 160%;
-  color: ${(props) => props.theme.colors["base-text"]};
+  color: ${(props) => props.theme.colors["base-subtitle"]};
   padding: 16px;
   display: flex;
   align-items: center;
@@ -141,6 +143,10 @@ export const ConfirmForm = styled(baseForm)`
   gap: 24px;
   margin-left: 32px;
   grid-area: confirm;
+
+  span{
+    color: ${props => props.theme.colors["base-subtitle"]};
+  }
 
   @media (max-width: 820px) {
     margin: 0;

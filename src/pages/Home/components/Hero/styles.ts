@@ -66,6 +66,7 @@ export const Item = styled.div<ItemColorProps>`
     align-items: center;
     margin-top: 2rem;
     min-width: 290px;
+    color: ${({ theme }) => theme.colors["base-text"]};
 
     font-size: 1.6rem;
     gap: 1.2rem;
